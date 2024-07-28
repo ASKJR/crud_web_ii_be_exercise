@@ -26,7 +26,7 @@ public class PessoaREST {
     public ResponseEntity<List<Pessoa>> obterTodasPessoas() {
         return ResponseEntity.ok(lista);
     }
-    
+
     @GetMapping("/pessoas/{id}")
     public ResponseEntity<Pessoa> obterPessoaPorId(@PathVariable("id") int id) {
         Pessoa pessoaFound = lista.stream().filter(p -> p.getId() == id).findAny().orElse(null);
@@ -38,18 +38,18 @@ public class PessoaREST {
 
     @PostMapping("/pessoas")
     public ResponseEntity<Pessoa> inserir(@RequestBody Pessoa pessoa) {
-       Pessoa p = lista.stream().filter(pes -> pes.getNome().equals(pessoa.getNome())).findAny().orElse(null);
-       if (p != null) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).build();
-       }
-       p = lista.stream().max(Comparator.comparing(Pessoa::getId)).orElse(null);
-       if (p == null) {
-        pessoa.setId(1);
-       } else {
-        pessoa.setId(p.getId() + 1);
-       }
-       lista.add(pessoa);
-       return ResponseEntity.status(HttpStatus.CREATED).body(pessoa);
+        Pessoa p = lista.stream().filter(pes -> pes.getNome().equals(pessoa.getNome())).findAny().orElse(null);
+        if (p != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+        p = lista.stream().max(Comparator.comparing(Pessoa::getId)).orElse(null);
+        if (p == null) {
+            pessoa.setId(1);
+        } else {
+            pessoa.setId(p.getId() + 1);
+        }
+        lista.add(pessoa);
+        return ResponseEntity.status(HttpStatus.CREATED).body(pessoa);
     }
 
     @PutMapping("/pessoas/{id}")
@@ -62,7 +62,7 @@ public class PessoaREST {
             pessoaFound.setMotorista(pessoa.getMotorista());
             return ResponseEntity.ok(pessoaFound);
         }
-        
+
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
@@ -77,7 +77,7 @@ public class PessoaREST {
     }
 
     static {
-        lista.add(new Pessoa(1, "Maria",25,"15-15-2000","AB"));
-        lista.add(new Pessoa(2, "Fernanda",20,"15-15-2005","B"));
+        lista.add(new Pessoa(1, "Maria", 25, "15-15-2000", "AB"));
+        lista.add(new Pessoa(2, "Fernanda", 20, "15-15-2005", "B"));
     }
 }
