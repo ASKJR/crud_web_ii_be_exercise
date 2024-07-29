@@ -1,60 +1,46 @@
 package br.net.kato.crud_web_ii_be_exercise.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "tb_usuario")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Usuario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usu")
+    @Setter
+    @Getter
     private int id;
+
+    @Column(name = "nome_usu")
+    @Setter
+    @Getter
     private String nome;
+
+    @Column(name = "login_usu")
+    @Setter
+    @Getter
     private String login;
+
+    @Column(name = "senha_usu")
+    @Setter
+    @Getter
     private String senha;
+
+    @Column(name = "perfil_usu")
+    @Setter
+    @Getter
     private String perfil;
-
-    public Usuario() {}
-    
-    public Usuario(int id, String nome, String login, String senha, String perfil) {
-        this.id = id;
-        this.nome = nome;
-        this.login = login;
-        this.senha = senha;
-        this.perfil = perfil;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getPerfil() {
-        return perfil;
-    }
-
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
-    }
-
 }
